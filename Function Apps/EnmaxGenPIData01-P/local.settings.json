@@ -1,0 +1,19 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "WEBSITE_SLOT_NAME": "Production",
+    "FUNCTIONS_EXTENSION_VERSION": "~1",
+    "ScmType": "GitHub",
+    "WEBSITE_AUTH_ENABLED": "False",
+    "REMOTEDEBUGGINGVERSION": "15.0.28010.00",
+    "FUNCTIONS_WORKER_PROCESS_COUNT": "10",
+    "APPLICATIONINSIGHTS_CONNECTION_STRING": "InstrumentationKey=8d1a5466-2fe2-4ebf-8fbd-ac0894d92799;IngestionEndpoint=https://westus-0.in.applicationinsights.azure.com/",
+    "FUNCTIONS_RUNTIME_SCALE_MONITORING_ENABLED": "0",
+    "APPINSIGHTS_INSTRUMENTATIONKEY": "8d1a5466-2fe2-4ebf-8fbd-ac0894d92799",
+    "WEBSITE_NODE_DEFAULT_VERSION": "6.5.0",
+    "WEBSITE_AUTH_AUTO_AAD": "False",
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=enmaxgenpidata;AccountKey=2+qY9eu7EPYT0l6SupDkB9EpMNo18JtK6iXQukJn4+30u+mG5EoGpJBVju0uAB1CGqKG9Z2kwJRZcSBHtegklA==",
+    "WEBSITE_SITE_NAME": "EnmaxGenPIData01-P",
+    "WEBSITE_AUTH_LOGOUT_PATH": "/.auth/logout"
+  }
+}

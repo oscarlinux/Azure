@@ -1,0 +1,714 @@
+﻿{
+  "swagger": "2.0",
+  "info": {
+    "title": "enmaxgenpidata01-p.azurewebsites.net",
+    "version": "1.0.0"
+  },
+  "host": "enmaxgenpidata01-p.azurewebsites.net",
+  "basePath": "/",
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/api/PI-CurrentValue": {
+      "post": {
+        "operationId": "PI-CurrentValue",
+        "description": "Gets PI Tag Current Value",
+        "summary": "Tag Current Value",
+        "x-ms-summary": "Current Value",
+        "x-ms-visibility": "important",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "PI Current Value",
+            "x-ms-summary": "Current value",
+            "x-ms-visibility": "important",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "PI Server": {
+                  "description": "Enter PI collective/server name",
+                  "type": "string",
+                  "default": "PIProdCollective",
+                  "x-ms-summary": "PI server",
+                  "x-ms-visibility": "advanced"
+                },
+                "Tag Names": {
+                  "description": "Enter PI Tag Name(s). Separate multiple tags with a coma (,)",
+                  "type": "string",
+                  "x-ms-summary": "Tag",
+                  "x-ms-visibility": "important"
+                },
+                "Friendly Names": {
+                  "description": "Enter tag friendly name. Separate multiple names with a coma (,). Leave blank to return data with the PI tag names.",
+                  "type": "string",
+                  "x-ms-summary": "Friendly Name",
+                  "x-ms-visibility": "important"
+                },
+                "Time Zone": {
+                  "description": "The output timestamp time zone.",
+                  "type": "string",
+                  "default": "America/Edmonton",
+                  "x-ms-summary": "Time Zone name as specified in the tz database.",
+                  "x-ms-visibility": "advanced"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success operation"
+          }
+        },
+        "security": [
+          {
+            "apikeyQuery": []
+          }
+        ]
+      }
+    },
+    "/api/PI-CalculatedData": {
+      "post": {
+        "operationId": "PI-CalculatedData",
+        "description": "Returns summary values for the PI tag",
+        "summary": "PI Calculated Data",
+        "x-ms-summary": "Calculated Data",
+        "x-ms-visibility": "important",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "PI Calculated Data",
+            "x-ms-summary": "Calculated Data",
+            "x-ms-visibility": "important",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "PI Server": {
+                  "description": "Enter PI collective/server name",
+                  "type": "string",
+                  "default": "PIProdCollective",
+                  "x-ms-summary": "PI server",
+                  "x-ms-visibility": "advanced"
+                },
+                "PI Tag": {
+                  "description": "Enter PI Tag Name",
+                  "type": "string",
+                  "x-ms-summary": "Tag",
+                  "x-ms-visibility": "important"
+                },
+                "Friendly Name": {
+                  "description": "Enter tag friendly name.",
+                  "type": "string",
+                  "x-ms-summary": "Friendly Name",
+                  "x-ms-visibility": "important"
+                },
+                "Start Time": {
+                  "description": "An optional start time. The default is *-1d for element attributes and points.",
+                  "type": "string",
+                  "default": "*-1d",
+                  "x-ms-summary": "Start Time",
+                  "x-ms-visibility": "important"
+                },
+                "End Time": {
+                  "description": "An optional end time. The default is * for element attributes and points.",
+                  "type": "string",
+                  "default": "*",
+                  "x-ms-summary": "End Time",
+                  "x-ms-visibility": "important"
+                },
+                "Summary Duration": {
+                  "description": "The duration of each summary interval.",
+                  "type": "string",
+                  "default": "1h",
+                  "x-ms-summary": "Sampling interval",
+                  "x-ms-visibility": "important"
+                },
+                "Filter Expression": {
+                  "description": "Data Filter expression",
+                  "default": "*",
+                  "type": "string",
+                  "x-ms-summary": "Filter Expression",
+                  "x-ms-visibility": "advanced"
+                },
+                "Calculation Mode": {
+                  "description": "Specifies the kinds of summaries to produce over the range.",
+                  "default": "Total",
+                  "type": "string",
+                  "enum": [
+                    "Total",
+                    "Average",
+                    "Minimum",
+                    "Maximum",
+                    "Range",
+                    "StdDev",
+                    "PopulationStdDev",
+                    "Count"
+                  ],
+                  "x-ms-summary": "Summary Type",
+                  "x-ms-visibility": "important"
+                },
+                "Calculation Basis": {
+                  "description": "Specifies the method of evaluating the data over the time range.",
+                  "default": "TimeWeighted",
+                  "type": "string",
+                  "enum": [
+                    "TimeWeighted",
+                    "EventWeighted"
+                  ],
+                  "x-ms-summary": "Calculation Basis",
+                  "x-ms-visibility": "advanced"
+                },
+                "Time Zone": {
+                  "description": "The output timestamp time zone.",
+                  "type": "string",
+                  "default": "America/Edmonton",
+                  "x-ms-summary": "Time Zone name as specified in the tz database.",
+                  "x-ms-visibility": "advanced"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success operation"
+          }
+        },
+        "security": [
+          {
+            "apikeyQuery": []
+          }
+        ]
+      }
+    },
+    "/api/AF-CurrentValue": {
+      "post": {
+        "operationId": "AF-CurrentValue",
+        "description": "Returns current values of the attributes for an Element, Event Frame or Attribute",
+        "summary": "AF Current Values",
+        "x-ms-summary": "Current Value",
+        "x-ms-visibility": "important",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "AF Current Value",
+            "x-ms-summary": "Current Value",
+            "x-ms-visibility": "important",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "AF Path": {
+                  "description": "Enter the path to the AF element (eg. AFServer\\AFDatabase\\ParentElement\\ChildElement).",
+                  "type": "string",
+                  "default": "AFProdCollective\\",
+                  "x-ms-summary": "AF Path",
+                  "x-ms-visibility": "important"
+                },
+                "Name Filter": {
+                  "description": "The name query string used for filtering attributes",
+                  "default": "*",
+                  "type": "string",
+                  "x-ms-summary": "Name Filter",
+                  "x-ms-visibility": "advanced"
+                },
+                "Time Zone": {
+                  "description": "The output timestamp time zone.",
+                  "type": "string",
+                  "default": "America/Edmonton",
+                  "x-ms-summary": "Time Zone name as specified in the tz database.",
+                  "x-ms-visibility": "advanced"
+                },
+                "Category Name": {
+                  "description": "Attributes Category. Add * if no category filter required.",
+                  "type": "string",
+                  "default": "*",
+                  "x-ms-summary": "Category Name",
+                  "x-ms-visibility": "advanced"
+                },
+                "Template Name": {
+                  "description": "Element Template.. Add * if no template filter required.",
+                  "default": "*",
+                  "type": "string",
+                  "x-ms-summary": "Template Name",
+                  "x-ms-visibility": "advanced"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success operation"
+          }
+        },
+        "security": [
+          {
+            "apikeyQuery": []
+          }
+        ]
+      }
+    },
+    "/api/AF-SampleData": {
+      "post": {
+        "operationId": "AF-SampleData",
+        "description": "Retrieve evenly-spaced, interpolated sample values over a time range",
+        "summary": "AF Sample Data",
+        "x-ms-summary": "Sample Data",
+        "x-ms-visibility": "important",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "AF Sample Data",
+            "x-ms-summary": "Sample Data",
+            "x-ms-visibility": "important",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "AF Path": {
+                  "description": "Enter the path to the AF element (eg. AFServer\\AFDatabase\\ParentElement\\ChildElement).",
+                  "type": "string",
+                  "default": "AFProdCollective\\",
+                  "x-ms-summary": "AF Path",
+                  "x-ms-visibility": "important"
+                },
+                "Start Time": {
+                  "description": "An optional start time. The default is *-1d for element attributes and points.",
+                  "type": "string",
+                  "default": "*-1d",
+                  "x-ms-summary": "Start Time",
+                  "x-ms-visibility": "important"
+                },
+                "End Time": {
+                  "description": "An optional end time. The default is * for element attributes and points.",
+                  "type": "string",
+                  "default": "*",
+                  "x-ms-summary": "End Time",
+                  "x-ms-visibility": "important"
+                },
+                "Interval": {
+                  "description": "The sampling interval.",
+                  "type": "string",
+                  "default": "1h",
+                  "x-ms-summary": "Sampling interval",
+                  "x-ms-visibility": "important"
+                },
+                "Name Filter": {
+                  "description": "The name query string used for filtering attributes",
+                  "default": "*",
+                  "type": "string",
+                  "x-ms-summary": "Name Filter",
+                  "x-ms-visibility": "advanced"
+                },
+                "Time Zone": {
+                  "description": "The output timestamp time zone.",
+                  "type": "string",
+                  "default": "America/Edmonton",
+                  "x-ms-summary": "Time Zone name as specified in the tz database.",
+                  "x-ms-visibility": "advanced"
+                },
+                "Category Name": {
+                  "description": "Attributes Category. Add * if no category filter required.",
+                  "type": "string",
+                  "default": "*",
+                  "x-ms-summary": "Category Name",
+                  "x-ms-visibility": "advanced"
+                },
+                "Template Name": {
+                  "description": "Element Template.. Add * if no template filter required.",
+                  "default": "*",
+                  "type": "string",
+                  "x-ms-summary": "Template Name",
+                  "x-ms-visibility": "advanced"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success operation"
+          }
+        },
+        "security": [
+          {
+            "apikeyQuery": []
+          }
+        ]
+      }
+    },
+    "/api/AF-CalculatedData": {
+      "post": {
+        "operationId": "AF-CalculatedData",
+        "description": "Returns summary values of the attributes for an element, event frame or attribute",
+        "summary": "AF Calculated Data",
+        "x-ms-summary": "Calculated Data",
+        "x-ms-visibility": "important",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "AF Calculated Data",
+            "x-ms-summary": "Calculated Data",
+            "x-ms-visibility": "important",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "AF Path": {
+                  "description": "Enter the path to the AF element (eg. AFServer\\AFDatabase\\ParentElement\\ChildElement).",
+                  "type": "string",
+                  "default": "AFProdCollective\\",
+                  "x-ms-summary": "AF Path",
+                  "x-ms-visibility": "important"
+                },
+                "Start Time": {
+                  "description": "An optional start time. The default is *-1d for element attributes and points.",
+                  "type": "string",
+                  "default": "*-1d",
+                  "x-ms-summary": "Start Time",
+                  "x-ms-visibility": "important"
+                },
+                "End Time": {
+                  "description": "An optional end time. The default is * for element attributes and points.",
+                  "type": "string",
+                  "default": "*",
+                  "x-ms-summary": "End Time",
+                  "x-ms-visibility": "important"
+                },
+                "Summary Duration": {
+                  "description": "The duration of each summary interval.",
+                  "type": "string",
+                  "default": "1h",
+                  "x-ms-summary": "Sampling interval",
+                  "x-ms-visibility": "important"
+                },
+                "Name Filter": {
+                  "description": "The name query string used for filtering attributes",
+                  "default": "*",
+                  "type": "string",
+                  "x-ms-summary": "Name Filter",
+                  "x-ms-visibility": "advanced"
+                },
+                "Filter Expression": {
+                  "description": "Data Filter expression",
+                  "default": "*",
+                  "type": "string",
+                  "x-ms-summary": "Filter Expression",
+                  "x-ms-visibility": "advanced"
+                },
+                "Calculation Mode": {
+                  "description": "Specifies the kinds of summaries to produce over the range.",
+                  "default": "Total",
+                  "type": "string",
+                  "enum": [
+                    "Total",
+                    "Average",
+                    "Minimum",
+                    "Maximum",
+                    "Range",
+                    "StdDev",
+                    "PopulationStdDev",
+                    "Count"
+                  ],
+                  "x-ms-summary": "Summary Type",
+                  "x-ms-visibility": "important"
+                },
+                "Calculation Basis": {
+                  "description": "Specifies the method of evaluating the data over the time range.",
+                  "default": "TimeWeighted",
+                  "type": "string",
+                  "enum": [
+                    "TimeWeighted",
+                    "EventWeighted"
+                  ],
+                  "x-ms-summary": "Calculation Basis",
+                  "x-ms-visibility": "advanced"
+                },
+                "Time Zone": {
+                  "description": "The output timestamp time zone.",
+                  "type": "string",
+                  "default": "America/Edmonton",
+                  "x-ms-summary": "Time Zone name as specified in the tz database.",
+                  "x-ms-visibility": "advanced"
+                },
+                "Category Name": {
+                  "description": "Attributes Category. Add * if no category filter required.",
+                  "type": "string",
+                  "default": "*",
+                  "x-ms-summary": "Category Name",
+                  "x-ms-visibility": "advanced"
+                },
+                "Template Name": {
+                  "description": "Element Template.. Add * if no template filter required.",
+                  "default": "*",
+                  "type": "string",
+                  "x-ms-summary": "Template Name",
+                  "x-ms-visibility": "advanced"
+                },
+                "User": {
+                  "description": "PI User.",
+                  "default": "",
+                  "type": "string",
+                  "x-ms-summary": "PI User Name"
+                },
+                "Password": {
+                  "description": "PI User Password",
+                  "default": "",
+                  "type": "string",
+                  "format": "password",
+                  "x-ms-summary": "PI User Password"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success operation"
+          }
+        },
+        "security": [
+          {
+            "apikeyQuery": []
+          }
+        ]
+      }
+    },
+    "/api/Time_Filtered": {
+      "post": {
+        "operationId": "Time_Filtered",
+        "description": "Calculate the amount of time a condition is True",
+        "summary": "Time Filtered",
+        "x-ms-summary": "Time Filtered",
+        "x-ms-visibility": "important",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Time Filtered",
+            "x-ms-summary": "Time Filtered",
+            "x-ms-visibility": "important",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Target Object": {
+                  "description": "A target object can be a Data Server, a database, an element, an event frame or an attribute",
+                  "type": "string",
+                  "default": "PIProdCollective",
+                  "x-ms-summary": "Target Object",
+                  "x-ms-visibility": "important"
+                },
+                "Target Server": {
+                  "description": "Enter target object type. Archive server or Asset server.",
+                  "default": "Archive",
+                  "type": "string",
+                  "enum": [
+                    "Archive",
+                    "AF"
+                  ],
+                  "x-ms-summary": "Target Server Type",
+                  "x-ms-visibility": "important"
+                },
+                "Expression": {
+                  "description": "A string containing the expression to be evaluated.",
+                  "type": "string",
+                  "x-ms-summary": "Expression",
+                  "x-ms-visibility": "important"
+                },
+                "Filter Name": {
+                  "description": "Enter a name for this filter",
+                  "type": "string",
+                  "x-ms-summary": "Filter Name",
+                  "x-ms-visibility": "important"
+                },
+                "Start Time": {
+                  "description": "An optional start time. The default is *-1d for element attributes and points.",
+                  "type": "string",
+                  "default": "*-1d",
+                  "x-ms-summary": "Start Time",
+                  "x-ms-visibility": "important"
+                },
+                "End Time": {
+                  "description": "An optional end time. The default is * for element attributes and points.",
+                  "type": "string",
+                  "default": "*",
+                  "x-ms-summary": "End Time",
+                  "x-ms-visibility": "important"
+                },
+                "Summary Duration": {
+                  "description": "The duration of each summary interval.",
+                  "type": "string",
+                  "default": "1h",
+                  "x-ms-summary": "Sampling interval",
+                  "x-ms-visibility": "important"
+                },
+                "Time Unit": {
+                  "description": "Time unit (days, hours, etc)",
+                  "default": "Days",
+                  "type": "string",
+                  "enum": [
+                    "Days",
+                    "Hours",
+                    "Minutes",
+                    "Seconds"
+                  ],
+                  "x-ms-summary": "Time unit",
+                  "x-ms-visibility": "important"
+                },
+                "Calculation Basis": {
+                  "description": "Specifies the method of evaluating the data over the time range.",
+                  "default": "TimeWeighted",
+                  "type": "string",
+                  "enum": [
+                    "TimeWeighted",
+                    "TimeWeightedContinuous",
+                    "TimeWeightedDiscrete"
+                  ],
+                  "x-ms-summary": "Calculation Basis",
+                  "x-ms-visibility": "important"
+                },
+                "Time Zone": {
+                  "description": "The output timestamp time zone.",
+                  "type": "string",
+                  "default": "America/Edmonton",
+                  "x-ms-summary": "Time Zone name as specified in the tz database.",
+                  "x-ms-visibility": "advanced"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success operation"
+          }
+        },
+        "security": [
+          {
+            "apikeyQuery": []
+          }
+        ]
+      }
+    },
+    "/api/Data_Join": {
+      "post": {
+        "operationId": "Data Join",
+        "description": "Join datasets",
+        "summary": "Join datasets",
+        "x-ms-summary": "Join datasets",
+        "x-ms-visibility": "important",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Join datasets",
+            "x-ms-summary": "Join datasets",
+            "x-ms-visibility": "important",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Left Dataset": {
+                  "description": "Left dataset to join as. Dataset must be a JSON",
+                  "type": "string",
+                  "x-ms-summary": "Left Dataset",
+                  "x-ms-visibility": "important"
+                },
+                "Right Dataset": {
+                  "description": "Right dataset to join as. Dataset must be a JSON",
+                  "type": "string",
+                  "x-ms-summary": "Right Dataset",
+                  "x-ms-visibility": "important"
+                },
+                "Join Type": {
+                  "description": "Join type (left, right, outer, inner).",
+                  "default": "inner",
+                  "type": "string",
+                  "enum": [
+                    "left",
+                    "right",
+                    "outer",
+                    "inner"
+                  ],
+                  "x-ms-summary": "Join type",
+                  "x-ms-visibility": "important"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success operation"
+          }
+        },
+        "security": [
+          {
+            "apikeyQuery": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {},
+  "securityDefinitions": {
+    "apikeyQuery": {
+      "type": "apiKey",
+      "name": "code",
+      "in": "query"
+    }
+  }
+}

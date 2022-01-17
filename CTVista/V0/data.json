@@ -1,0 +1,27 @@
+{
+      "controller":{
+          "name": "abc",
+          "serialnumber": "123456"
+      },
+      "data":
+      [
+        {
+          "timestamp": "2020-12-01 00:00:00",
+          "sensor":[
+              {"type": "pH", "customname": "pH", "value": 7.05, unit:""},
+              {"type": "ORP", "customname": "ORP", "value": 248, unit:"ppm"},
+              {"type": "Conductivity", "customname": "Conductivity", "value": 1587.16, unit:""},
+              {"type": "Chlorine", "customname": "Chlorine", "value": 0.31, unit:"ppm"}
+          ]
+         },
+         {
+          "timestamp": "2020-11-21 00:10:00",
+          "sensor":[
+              {"type": "pH", "customname": "pH", "value":7.05, unit:""},
+              {"type": "ORP", "customname": "ORP", "value":251, unit:"ppm"},
+              {"type": "Conductivity", "customname": "Conductivity", "value": 1589.42, unit:""},
+              {"type": "Chlorine", "customname": "Chlorine", "value": 0.31, unit:"ppm"},
+          ]
+        }
+      ]
+  }
